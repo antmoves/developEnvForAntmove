@@ -122,7 +122,7 @@ jobs:
           PASSWD: ${{ secrets.PASSWD }}
         run: bash wrapper.sh invoke
       - name: Send Email
-        if: steps.decision.outputs.runnable == 'true'
+        # if: steps.decision.outputs.runnable == 'true'
         env:
           MAIL_HOST: ${{ secrets.MAIL_HOST }}
           MAIL_USER: ${{ secrets.MAIL_USER }}
