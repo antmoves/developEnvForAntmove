@@ -1,0 +1,24 @@
+name: Email_Sending
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - name: Send email
+        env:
+          MAIL_HOST: ${{ secrets.MAIL_HOST }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_POSTFIX: ${{ secrets.MAIL_POSTFIX }}
+          MAILTO_LIST: ${{ secrets.MAILTO_LIST }}
+        run: python ScheduleExecuteTaskSucess.py
