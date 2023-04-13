@@ -121,6 +121,15 @@ jobs:
         env:
           PASSWD: ${{ secrets.PASSWD }}
         run: bash wrapper.sh invoke
+      - name: Send Email
+        if: steps.decision.outputs.runnable == 'true'
+        env:
+          MAIL_HOST: ${{ secrets.MAIL_HOST }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_POSTFIX: ${{ secrets.MAIL_POSTFIX }}
+          MAILTO_LIST: ${{ secrets.MAILTO_LIST }}
+        run: python ScheduleExecuteTaskSucess.py
 
       - name: Commit and push
         run: bash wrapper.sh push "update app config"
