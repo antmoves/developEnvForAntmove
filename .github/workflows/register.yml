@@ -100,7 +100,7 @@ jobs:
         run: |
           cd register
           npm install
-
+          
       - name: Register apps
         env:
           USER: ${{ secrets.USER }}
